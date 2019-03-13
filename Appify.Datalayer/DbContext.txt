@@ -1,0 +1,7 @@
+﻿Scaffold-DbContext "Server=(local);Database=Appify_Dev;persist security info=True;user id=sa;password=sapass;MultipleActiveResultSets=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+  optionsBuilder.UseSqlServer(Constants.DB_PATH);
+
+
+  public Appify_DevContext(DbContextOptions<Appify_DevContext> options): base(options)
+        {   }

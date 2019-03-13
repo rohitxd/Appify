@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appify.Adapters", "Appify.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appify.Common", "Appify.Common\Appify.Common.csproj", "{D026574D-2CCC-4930-851D-C668161831EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appify.Datalayer", "Appify.Datalayer\Appify.Datalayer.csproj", "{8AE6317D-553D-4B2B-B0FC-9EA5CC71AA2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D026574D-2CCC-4930-851D-C668161831EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D026574D-2CCC-4930-851D-C668161831EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D026574D-2CCC-4930-851D-C668161831EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE6317D-553D-4B2B-B0FC-9EA5CC71AA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE6317D-553D-4B2B-B0FC-9EA5CC71AA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE6317D-553D-4B2B-B0FC-9EA5CC71AA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE6317D-553D-4B2B-B0FC-9EA5CC71AA2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
