@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Appify.Common.DTO;
+using Appify.Common;
 
 namespace Appify.Adapters
 {
@@ -34,10 +36,40 @@ namespace Appify.Adapters
                                    select a).FirstOrDefault();
                if (loginDetails != null)
                {
-                   response.Email = loginDetails.Email;
-                   response.PhoneNumber = loginDetails.PhoneNumber;
+                   response.Data = new UserLoginDTO();
+                   response.Data.UserLoginId = loginDetails.UserLoginId;
+                   response.Data.Email = loginDetails.Email;
+                   response.Data.PhoneNumber = loginDetails.PhoneNumber;
                }
            });
+            return response;
+        }
+
+
+        public async Task<UserLoginResponse> UserLoginForSystemInternalPurpose(UserLoginRequest request)
+        {
+            UserLoginResponse response = null;
+            await Task.Run(() =>
+            {
+                var logindata = (from user in context.WebUserLogin
+                                 where user.PhoneNumber.Equals(request.PhoneNumber)
+                                 && user.Email.Equals(request.Email, StringComparison.CurrentCultureIgnoreCase)
+                                 && user.IsDeleted != true
+                                 select user).FirstOrDefault();
+                if (logindata != null)
+                {
+                    response = new UserLoginResponse();
+                    response.Data = new UserLoginDTO();
+                    response.Data.UserLoginId = logindata.UserLoginId;
+                    response.Data.Email = logindata.Email;
+                    response.Data.PhoneNumber = logindata.PhoneNumber;
+                   // response = mapper.Map<UserLoginDetails, UserLoginResponse>(logindata);
+                }
+                else
+                {
+                    throw new Exception(EnumErrorCode.USER_NOTREGISTERED.ToString());
+                }
+            });
             return response;
         }
     }

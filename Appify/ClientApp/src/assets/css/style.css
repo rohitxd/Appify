@@ -1,0 +1,5 @@
+.customselect.select-wrapper span.caret{right:15px;}
+.select-wrapper .dropdown-content{width:100% !important;background-color:#ffffff;height:70vh;}
+.select-wrapper .dropdown-content li > span{font-size:15px;color:#212121;font-weight:700;border-bottom:1px dotted #bdbdbd;}
+.select-wrapper .dropdown-content li{transition:all ease-in-out 0.4s;-webkit-transition:all ease-in-out 0.4s;-o-transition:all ease-in-out 0.4s;-moz-transition:all ease-in-out 0.4s;}
+.select-wrapper .dropdown-content li:hover, .select-wrapper .dropdown-content li.active, .select-wrapper .dropdown-content li.selected{background-color:#c4e7ec;}

@@ -1,0 +1,178 @@
+<section class="d-flex bg-white">
+    <div class="row full-width">
+      <div class="col-md-4 authbg">
+          <div class="authcontent">
+            <h4>Your Participation Matters</h4>
+            <p>Volunteer Management System</p>
+          </div>
+      </div>
+      <!-- end of col-sm-4 -->
+      <!-- Authentication card start -->
+      <div class="signup-card col-md-8">
+        <div class="container-fluid">
+          <form class="md-float-material" [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+            <div class="text-left">
+              <div class="row m-b-20">
+                <div class="col-md-12">
+                  <h3></h3>
+                  <p class="text-left">Sign up. It is fast and easy.</p>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Name of Corporate</label>
+                  <input type="text" class="form-control" formControlName="corporateName">
+                  <small *ngIf="validateForm && !registerForm.controls.corporateName.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Corporate Registration Date</label>
+                  <!-- <input type="date" class="form-control" formControlName="corporateRegistrationDate"> -->
+                  <ng-datepicker formControlName="corporateRegistrationDate" position="top-left" [options]="options"></ng-datepicker>
+
+                  <!--<ng-datepicker formControlName="corporateRegistrationDate" position="top-left" [options]="options"></ng-datepicker>-->
+                  <small *ngIf="validateForm && !registerForm.controls.corporateRegistrationDate.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Password</label>
+                  <input type="password" class="form-control" formControlName="password">
+                  <small class="text-muted">Must have characters & Numbers and atleast 1 special character</small>
+                  <small *ngIf="validateForm && !registerForm.controls.password.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Confirm Password</label>
+                  <input type="password" class="form-control" formControlName="confirmPassword">
+                  <small class="text-muted">Must match with password</small>
+                  <small *ngIf="validateForm && !registerForm.controls.confirmPassword.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input type="email" class="form-control" formControlName="corporateEmail">
+                  <small *ngIf="validateForm && registerForm.controls.corporateEmail.errors && registerForm.controls.corporateEmail.errors.email && registerForm.controls.corporateEmail.errors.required && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                  <small *ngIf="validateForm && registerForm.controls.corporateEmail.errors && registerForm.controls.corporateEmail.errors.email && !registerForm.controls.corporateEmail.errors.required && !registerForm.valid" class="pull-left text-danger">Enter valid email</small>
+                  <!-- <small *ngIf="validateForm && !registerForm.controls.corporateEmail.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small> -->
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" formControlName="corporateMobileNumber"  maxlength="10">
+                  <!-- <small *ngIf="validateForm && !registerForm.controls.corporateMobileNumber.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small> -->
+                  <small *ngIf="validateForm && registerForm.controls.corporateMobileNumber.errors && !registerForm.controls.corporateMobileNumber.errors.pattern && registerForm.controls.corporateMobileNumber.errors.required && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                  <small *ngIf="validateForm && registerForm.controls.corporateMobileNumber.errors && registerForm.controls.corporateMobileNumber.errors.pattern && !registerForm.controls.corporateMobileNumber.errors.required && !registerForm.valid" class="pull-left text-danger">Enter valid Mobile Number</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Country</label>
+                  <select class="form-control" formControlName="countryId" (change)="getStates($event.target.value)">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.country}}</option>
+                  </select>
+                  <small *ngIf="validateForm && !registerForm.controls.countryId.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <select class="form-control" formControlName="stateId" (change)="getCities($event.target.value)">
+                    <option value="">Select State</option>
+                    <option *ngFor="let state of states" value="{{state.stateId}}">{{state.name}}</option>
+                  </select>
+                  <small *ngIf="validateForm && !registerForm.controls.stateId.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>City/District</label>
+                  <select class="form-control" formControlName="cityId">
+                    <option value="">Select City</option>
+                    <option *ngFor="let city of cities" value="{{city.cityId}}">{{city.name}}</option>
+                  </select>
+                  <small *ngIf="validateForm && !registerForm.controls.cityId.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Area</label>
+                  <input type="text" class="form-control" formControlName="area">
+                  <small *ngIf="validateForm && !registerForm.controls.area.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Location</label>
+                  <input type="text" class="form-control" formControlName="location">
+                  <small *ngIf="validateForm && !registerForm.controls.location.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Pincode</label>
+                  <input type="text" class="form-control" formControlName="zipcode">
+                  <small *ngIf="validateForm && !registerForm.controls.zipcode.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div>
+              <h5>Contact Person</h5>
+              <hr />
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" formControlName="adminFirstName" />
+                  <small *ngIf="validateForm && !registerForm.controls.adminFirstName.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" formControlName="adminLastName" />
+                  <small *ngIf="validateForm && !registerForm.controls.adminLastName.valid && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input type="email" class="form-control" formControlName="adminEmail" />
+                  <small *ngIf="validateForm && registerForm.controls.adminEmail.errors && registerForm.controls.adminEmail.errors.email && registerForm.controls.adminEmail.errors.required && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                  <small *ngIf="validateForm && registerForm.controls.adminEmail.errors && registerForm.controls.adminEmail.errors.email && !registerForm.controls.adminEmail.errors.required && !registerForm.valid" class="pull-left text-danger">Enter valid email</small>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" formControlName="adminMobileNumber"  maxlength="10">
+                  <small *ngIf="validateForm && registerForm.controls.adminMobileNumber.errors && !registerForm.controls.adminMobileNumber.errors.pattern && registerForm.controls.adminMobileNumber.errors.required && !registerForm.valid" class="pull-left text-danger">Can't be blank</small>
+                  <small *ngIf="validateForm && registerForm.controls.adminMobileNumber.errors && registerForm.controls.adminMobileNumber.errors.pattern && !registerForm.controls.adminMobileNumber.errors.required && !registerForm.valid" class="pull-left text-danger">Enter valid Mobile Number</small>                </div>
+              </div>
+              <!--<div class="row m-t-25 text-left">
+        <div class="col-md-12">
+          <div class="checkbox-fade fade-in-primary">
+            <label>
+              <input type="checkbox" value="">
+              <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+              <span class="text-inverse">I read and accept <a>Terms &amp; Conditions.</a></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="checkbox-fade fade-in-primary">
+            <label>
+              <input type="checkbox" value="">
+              <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+              <span class="text-inverse">Email me Notifications</span>
+            </label>
+          </div>
+        </div>
+      </div>-->
+              <div class="row m-t-30">
+                <div class="col-md-4 mr-auto ml-auto">
+                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now</button>
+                </div>
+              </div>
+              <p class="text-center">Already have Account? <a [routerLink]="['']" class="f-w-600 text-primary">Login</a> </p>
+              <div class="form-group alert alert-danger" *ngIf="errorMessage">
+                {{errorMessage}}
+              </div>
+              <div class="form-group alert alert-primary" *ngIf="successMessage">
+                {{successMessage}}
+              </div>
+            </div>
+          </form>
+        </div><!-- end of form -->
+      </div>
+      <!-- Authentication card end -->
+    </div>
+    <!-- end of row -->
+</section>
